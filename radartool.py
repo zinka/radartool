@@ -42,4 +42,4 @@ def ambig():
 	
 if __name__ == '__main__':
 	
-	print 'nothing'
+	print my_func(0)
