@@ -42,54 +42,10 @@ def Rmax_Pavg():
 	""" Function doc """
 	return
 	
-def ambig_gen(tau, wd, pulse_shape='rect', no_of_pulses=1, plot_type='3D'):
-	""" This is function is damn slow ... so, never use this for ambiguity plots unless really required """
-	
-	# te = 1.5 # Expanded pulse width ... not required for Gaussian pulse
-	# [tau,wd] = np.mgrid[0:0:1j, -20:20:100j]
-    g1r = 'Gaussian(eta, te)[0]'
-    g2r = 'Gaussian(eta+tau[i,j]], te)[0]' 
-    g1i = 'Gaussian(eta, te)[1]'
-    g2i = 'Gaussian(eta+tau[i,j], te)[1]'    
-    
-    g1r = 'rect(eta, te)[0]'
-    g2r = 'rect(eta+tau[i,j], te)[0]' 
-    g1i = 'rect(eta, te)[1]'
-    g2i = 'rect(eta+tau[i,j], te)[1]'     
-    
-    mu = 1
-    g1r = 'LFM(eta, mu, te)[0]'
-    g2r = 'LFM(eta+tau[i,j], mu, te)[0]' 
-    g1i = 'LFM(eta, mu, te)[1]'
-    g2i = 'LFM(eta+tau[i,j], mu, te)[1]'     
-        
-    ambig = np.zeros(wd.shape, dtype='complex')
-        
-    for i in range(wd.shape[0]):
-        
-        for j in range(wd.shape[1]):
-        
-            gg_real = lambda eta: (eval(g1r)*eval(g2r)+eval(g1i)*eval(g2i))*np.cos(wd[i,j]*eta)- (eval(g1r)*eval(g2i)-eval(g1i)*eval(g2r))*np.sin(wd[i,j]*eta)        
-            tmp_real = integrate.quad(gg_real, -np.inf, np.inf)[0]
-            
-            gg_imag = lambda eta: (eval(g1r)*eval(g2r)+eval(g1i)*eval(g2i))*np.sin(wd[i,j]*eta)+ (eval(g1r)*eval(g2i)-eval(g1i)*eval(g2r))*np.cos(wd[i,j]*eta)        
-            tmp_imag = integrate.quad(gg_imag, -np.inf, np.inf)[0]
-            
-            ambig[i, j] = tmp_real+1j*tmp_imag	
-		
-	return	
-	
-def ambig_gen_tau(tau, wd, pulse_shape='rect', no_of_pulses=1, plot_type='3D'):
-	""" Function doc """	
-	return
-	
-def ambig_gen_wd(tau, wd, pulse_shape='rect', no_of_pulses=1, plot_type='3D'):
-""" Function doc """	
-return
-
-def ambig(tau, wd, pulse_shape='rect', no_of_pulses=1, plot_type='3D'):
-	""" Function doc """	
-	return
+def ambig ():
+    """ function based on samplings ... should take care of any type of 
+    signal as long as it's amplitude, phase and frequency vectors are given """
+    return
 	
 if __name__ == '__main__':
 	
